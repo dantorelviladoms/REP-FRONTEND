@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { 
-  CalendarIcon, 
-  MapPinIcon, 
-  SwatchIcon, 
-  LockClosedIcon, 
+import {
+  CalendarIcon,
+  MapPinIcon,
+  SwatchIcon,
+  LockClosedIcon,
   ClipboardDocumentCheckIcon,
   TruckIcon,
   ShoppingBagIcon
@@ -38,8 +38,8 @@ function Step({ number, label, active, done }) {
           ${done
             ? "bg-green-600 border-green-600 text-white"
             : active
-            ? "bg-transparent border-green-500 text-green-400"
-            : "bg-transparent border-gray-600 text-gray-500"
+              ? "bg-transparent border-green-500 text-green-400"
+              : "bg-transparent border-gray-600 text-gray-500"
           }`}
       >
         {done ? (
@@ -357,8 +357,8 @@ export default function Checkout() {
       const res = await fetch("http://localhost:5000/api/ventas", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ 
-          id_usuario: userId, 
+        body: JSON.stringify({
+          id_usuario: userId,
           id_producto: cartItems[0]?.id_vehiculo?._id || cartItems[0]?._id,
           metodo_pago: "tarjeta",
           precio_final: total
@@ -487,8 +487,8 @@ export default function Checkout() {
                     {!loading && !error && cartItems.length === 0 && (
                       <div className="text-center py-16 animate-fadeIn">
                         <div className="relative mx-auto w-20 h-20 mb-6">
-                            <div className="absolute inset-0 bg-green-500/10 rounded-full animate-pulse" />
-                            <ShoppingBagIcon className="relative w-20 h-20 text-gray-700 mx-auto" />
+                          <div className="absolute inset-0 bg-green-500/10 rounded-full animate-pulse" />
+                          <ShoppingBagIcon className="relative w-20 h-20 text-gray-700 mx-auto" />
                         </div>
                         <p className="text-gray-400 text-sm mb-6">Tu carrito está vacío</p>
                         <button onClick={() => navigate("/home")}
