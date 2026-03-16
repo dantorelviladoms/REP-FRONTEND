@@ -359,7 +359,9 @@ export default function Checkout() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           id_usuario: userId,
-          id_producto: cartItems[0]?.id_vehiculo?._id || cartItems[0]?._id,
+          productos: cartItems.map(item => ({
+            id_vehiculo: item.id_vehiculo?._id || item._id
+          })),
           metodo_pago: "tarjeta",
           precio_final: total
         }),
