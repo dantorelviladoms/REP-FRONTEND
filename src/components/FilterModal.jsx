@@ -37,9 +37,18 @@ export default function FilterModal({ isOpen, onClose, onApply, currentFilters }
             const data = await response.json();
             if (data.status === "success") {
                 const uniqueBrands = [...new Set(data.data.map(v => v.marca))].sort();
-                const uniqueColors = [...new Set(data.data.map(v => v.color).filter(c => c))].sort();
+                
+                // Colores base que siempre queremos mostrar
+                const baseColors = ["Blanco", "Negro", "Gris", "Plata", "Rojo", "Azul", "Verde", "Amarillo"];
+                
+                // Colores presentes en la base de datos
+                const dbColors = data.data.map(v => v.color).filter(c => c);
+                
+                // Combinar y eliminar duplicados (ignorando mayúsculas/minúsculas)
+                const combinedColors = [...new Set([...baseColors, ...dbColors])].sort((a, b) => a.localeCompare(b));
+                
                 setBrands(uniqueBrands);
-                setColors(uniqueColors);
+                setColors(combinedColors);
             }
         } catch (error) {
             console.error("Error fetching brands and colors:", error);
