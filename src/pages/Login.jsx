@@ -13,7 +13,7 @@ export default function Login() {
     setError("");
 
     try {
-      const response = await fetch("http://localhost:5000/api/user/login", {
+      const response = await fetch("http://localhost:5000/api/auth/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -24,9 +24,10 @@ export default function Login() {
       const data = await response.json();
 
       if (data.status === "success") {
-        // Guardar token y dades bàsiques de l'usuari
-        localStorage.setItem("token", data.token);
-        const payload = JSON.parse(atob(data.token.split('.')[1]));
+        // Guardar tokens y datos básicos del usuario
+        localStorage.setItem("token", data.accessToken);
+        localStorage.setItem("refreshToken", data.refreshToken);
+        const payload = JSON.parse(atob(data.accessToken.split('.')[1]));
         localStorage.setItem("userId", payload.id);
 
         navigate("/home");
