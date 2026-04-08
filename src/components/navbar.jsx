@@ -5,7 +5,7 @@ import { UserIcon, ShoppingCartIcon, XMarkIcon, TrashIcon } from "@heroicons/rea
 const navigation = [
   { name: "Inicio", href: "/" },
   { name: "Catálogo", href: "/home" },
-  { name: "Nuestra Historia", href: "#" },
+  { name: "Nuestra Historia", href: "/historia" },
   { name: "Financiamiento", href: "#" },
   { name: "Contacto", href: "#" },
 ];

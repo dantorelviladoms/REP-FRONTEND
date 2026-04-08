@@ -9,7 +9,7 @@ import "./App.css";
 const navigation = [
   { name: "Catálogo", href: "/home" },
   { name: "Características", href: "#caracteristicas" },
-  { name: "Nuestra Historia", href: "#" },
+  { name: "Nuestra Historia", href: "/historia" },
   { name: "Financiamiento", href: "#" },
   { name: "Contacto", href: "#" },
 ];

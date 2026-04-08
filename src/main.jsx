@@ -8,6 +8,7 @@ import Login from "./pages/Login.jsx";
 import Register from "./pages/Register.jsx";
 import CarDetail from "./pages/CarDetail.jsx";
 import Checkout from "./pages/Checkout.jsx";
+import Historia from "./pages/Historia.jsx";
 import "./index.css";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
@@ -20,6 +21,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
         <Route path="/register" element={<Register />} />
         <Route path="/car/:id" element={<CarDetail />} />
         <Route path="/checkout" element={<Checkout />} />
+        <Route path="/historia" element={<Historia />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>
