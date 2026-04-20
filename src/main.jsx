@@ -8,6 +8,8 @@ import Login from "./pages/Login.jsx";
 import Register from "./pages/Register.jsx";
 import CarDetail from "./pages/CarDetail.jsx";
 import Checkout from "./pages/Checkout.jsx";
+import CheckoutSuccess from "./pages/CheckoutSuccess.jsx";
+import CheckoutCancel from "./pages/CheckoutCancel.jsx";
 import Historia from "./pages/Historia.jsx";
 import "./index.css";
 
@@ -21,6 +23,8 @@ ReactDOM.createRoot(document.getElementById("root")).render(
         <Route path="/register" element={<Register />} />
         <Route path="/car/:id" element={<CarDetail />} />
         <Route path="/checkout" element={<Checkout />} />
+        <Route path="/checkout/success" element={<CheckoutSuccess />} />
+        <Route path="/checkout/cancel" element={<CheckoutCancel />} />
         <Route path="/historia" element={<Historia />} />
       </Routes>
     </BrowserRouter>
