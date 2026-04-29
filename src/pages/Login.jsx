@@ -29,8 +29,14 @@ export default function Login() {
         localStorage.setItem("refreshToken", data.refreshToken);
         const payload = JSON.parse(atob(data.accessToken.split('.')[1]));
         localStorage.setItem("userId", payload.id);
+        localStorage.setItem("userRole", payload.rol || payload.role || "cliente");
 
-        navigate("/home");
+        // Redirigir según el rol
+        if (payload.rol === "admin" || payload.role === "admin") {
+          navigate("/admin");
+        } else {
+          navigate("/dashboard");
+        }
       } else {
         setError(data.message || "Error al iniciar sesión");
       }

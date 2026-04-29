@@ -16,6 +16,11 @@ const navigation = [
 
 function App() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  
+  // Comprobar estado de autenticación
+  const token = localStorage.getItem("token");
+  const userRole = localStorage.getItem("userRole");
+  const profileLink = userRole === "admin" ? "/admin" : "/dashboard";
 
   return (
     <div className="bg-black">
@@ -72,23 +77,21 @@ function App() {
                 ))}
               </div>
               <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-                <a href="/login" className="text-sm font-semibold text-white flex items-center gap-1 hover:text-green-200">
-                  Iniciar sesión
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    className="w-4 h-4"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
-                    />
-                  </svg>
-                </a>
+                {token ? (
+                  <a href={profileLink} className="text-sm font-semibold text-white flex items-center gap-2 hover:text-green-400 bg-gray-900/50 backdrop-blur-sm border border-green-500/30 px-4 py-2 rounded-full transition-all">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
+                    </svg>
+                    Mi Perfil
+                  </a>
+                ) : (
+                  <a href="/login" className="text-sm font-semibold text-white flex items-center gap-1 hover:text-green-200">
+                    Iniciar sesión
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-4 h-4">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                    </svg>
+                  </a>
+                )}
               </div>
             </nav>
 
@@ -133,18 +136,20 @@ function App() {
                       ))}
                     </div>
                     <div className="py-6">
-                      <a
-                        href="/login"
-                        className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold text-white hover:bg-green-500"
-                      >
-                        Iniciar sesión
-                      </a>
-                      <a
-                        href="/register"
-                        className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold text-white hover:bg-green-500"
-                      >
-                        Registrarse
-                      </a>
+                      {token ? (
+                        <a href={profileLink} className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold text-white hover:bg-green-700 bg-green-600/20 border border-green-500/30">
+                          Mi Perfil
+                        </a>
+                      ) : (
+                        <>
+                          <a href="/login" className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold text-white hover:bg-green-500">
+                            Iniciar sesión
+                          </a>
+                          <a href="/register" className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold text-white hover:bg-green-500">
+                            Registrarse
+                          </a>
+                        </>
+                      )}
                     </div>
                   </div>
                 </div>

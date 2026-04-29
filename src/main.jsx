@@ -11,21 +11,36 @@ import Checkout from "./pages/Checkout.jsx";
 import CheckoutSuccess from "./pages/CheckoutSuccess.jsx";
 import CheckoutCancel from "./pages/CheckoutCancel.jsx";
 import Historia from "./pages/Historia.jsx";
+import UserDashboard from "./pages/UserDashboard.jsx";
+import AdminDashboard from "./pages/AdminDashboard.jsx";
+import ProtectedRoute from "./components/ProtectedRoute.jsx";
+import AdminRoute from "./components/AdminRoute.jsx";
 import "./index.css";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <BrowserRouter>
       <Routes>
+        {/* Rutes públiques */}
         <Route path="/" element={<App />} />
         <Route path="/home" element={<Products />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/car/:id" element={<CarDetail />} />
-        <Route path="/checkout" element={<Checkout />} />
+        <Route path="/historia" element={<Historia />} />
         <Route path="/checkout/success" element={<CheckoutSuccess />} />
         <Route path="/checkout/cancel" element={<CheckoutCancel />} />
-        <Route path="/historia" element={<Historia />} />
+
+        {/* Rutes protegides — qualsevol usuari autenticat */}
+        <Route element={<ProtectedRoute />}>
+          <Route path="/checkout" element={<Checkout />} />
+          <Route path="/dashboard" element={<UserDashboard />} />
+        </Route>
+
+        {/* Rutes protegides — només admin */}
+        <Route element={<AdminRoute />}>
+          <Route path="/admin" element={<AdminDashboard />} />
+        </Route>
       </Routes>
     </BrowserRouter>
   </React.StrictMode>
